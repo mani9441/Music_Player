@@ -4,7 +4,7 @@ A sleek, customizable music player built with [Electron](https://www.electronjs.
 
 ## Features
 - **Iron Man Hologram UI**: A futuristic, transparent interface with glowing buttons and a song list dropdown.
-- **Local MP3 Playback**: Plays MP3 files from the `automations/songs` folder.
+- **Local MP3 Playback**: Plays MP3 files from the `/songs` folder.
 - **HTTP Control**: Control playback via HTTP endpoints (e.g., `http://localhost:3000/tool/skip`) for integration with tools like LangChain.
 - **Floating Window**: Toggleable always-on-top mode for a floating experience.
 - **Resizable Window**: Drag to resize with constraints (min: 250x300, max: 1000x800).
@@ -15,7 +15,7 @@ A sleek, customizable music player built with [Electron](https://www.electronjs.
 ## Prerequisites
 - [Node.js](https://nodejs.org/) (v16 or higher recommended)
 - [npm](https://www.npmjs.com/) (included with Node.js)
-- MP3 files in the `automations/songs` folder (relative to the project root)
+- MP3 files in the `/songs` folder (relative to the project root)
 
 ## Installation
 1. **Clone the Repository**:
@@ -28,8 +28,8 @@ A sleek, customizable music player built with [Electron](https://www.electronjs.
    npm install
    ```
 3. **Add MP3 Files**:
-   - Place MP3 files in the `automations/songs` folder.
-   - Example: `automations/songs/song1.mp3`, `automations/songs/song2.mp3`.
+   - Place MP3 files in the `/songs` folder.
+   - Example: `/songs/song1.mp3`, `automations/songs/song2.mp3`.
 4. **Run the App**:
    ```bash
    npm start
@@ -86,8 +86,7 @@ See `agent_example.py` (not included) for a full example.
 ## Project Structure
 ```
 electron-music-player/
-├── automations/
-│   └── songs/              # Place MP3 files here
+├── songs                  # Place MP3 files here         
 ├── icon.ico                # Taskbar icon
 ├── index.html              # Main UI (Iron Man hologram)
 ├── main.js                 # Electron main process (window, HTTP server)
