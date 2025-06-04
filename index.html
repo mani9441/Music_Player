@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline';"
+    />
+    <title>Mani's Music Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1e 100%);
+        color: #e0e0e0;
+        font-family: "Arial", sans-serif;
+        margin: 0; /* Remove default margin for resizing */
+      }
+      .glow {
+        box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff;
+        transition: all 0.3s ease;
+      }
+      .glow:hover {
+        box-shadow: 0 0 20px #00d4ff, 0 0 30px #00d4ff;
+      }
+      .hologram {
+        background: rgba(0, 212, 255, 0.1);
+        border: 1px solid #00d4ff;
+        animation: pulse 2s infinite;
+        width: 100%;
+        max-width: 600px;
+        min-width: 200px;
+        padding: 1rem;
+        box-sizing: border-box;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 5px #00d4ff;
+        }
+        50% {
+          box-shadow: 0 0 15px #00d4ff;
+        }
+        100% {
+          box-shadow: 0 0 5px #00d4ff;
+        }
+      }
+      .arc-reactor {
+        background: radial-gradient(
+          circle,
+          #00d4ff 10%,
+          #007ea7 70%,
+          transparent 100%
+        );
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        animation: reactor-pulse 3s infinite;
+      }
+      @keyframes reactor-pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+      }
+      .draggable {
+        -webkit-app-region: drag;
+      }
+      .non-draggable {
+        -webkit-app-region: no-drag;
+      }
+      .resize-handle {
+        position: absolute;
+        background: rgba(0, 212, 255, 0.3);
+        cursor: nwse-resize;
+      }
+      .resize-bottom-right {
+        bottom: 0;
+        right: 0;
+        width: 10px;
+        height: 10px;
+      }
+      .resize-bottom {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 5px;
+        cursor: ns-resize;
+      }
+      /* Responsive adjustments */
+      @media (max-width: 300px) {
+        .hologram {
+          padding: 0.5rem;
+        }
+        .text-3xl {
+          font-size: 1.25rem;
+        }
+        button {
+          padding: 0.25rem 0.5rem;
+          font-size: 0.75rem;
+        }
+        select {
+          font-size: 0.75rem;
+          padding: 0.25rem;
+        }
+        #now-playing {
+          font-size: 0.875rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex items-center justify-center draggable">
+    <div class="arc-reactor"></div>
+    <div class="hologram rounded-lg non-draggable relative">
+      <h1 class="text-3xl text-center mb-4 text-[#00d4ff] font-bold">
+        Mani's Music Player
+      </h1>
+      <div id="now-playing" class="text-center mb-4">No song playing</div>
+      <div class="flex flex-wrap justify-center gap-2 mb-4">
+        <button
+          id="play-btn"
+          class="glow bg-[#00d4ff] text-black px-3 py-1 rounded non-draggable"
+        >
+          Play
+        </button>
+        <button
+          id="pause-btn"
+          class="glow bg-[#00d4ff] text-black px-3 py-1 rounded non-draggable"
+        >
+          Pause
+        </button>
+        <button
+          id="stop-btn"
+          class="glow bg-[#00d4ff] text-black px-3 py-1 rounded non-draggable"
+        >
+          Stop
+        </button>
+        <button
+          id="skip-btn"
+          class="glow bg-[#00d4ff] text-black px-3 py-1 rounded non-draggable"
+        >
+          Skip
+        </button>
+        <button
+          id="float-btn"
+          class="glow bg-[#00d4ff] text-black px-3 py-1 rounded non-draggable"
+        >
+          Float: On
+        </button>
+      </div>
+      <select
+        id="song-list"
+        class="w-full bg-[#1a1a2e] text-[#00d4ff] border-[#00d4ff] border p-2 rounded mb-4 non-draggable"
+      >
+        <option value="">Select a song</option>
+      </select>
+      <div class="resize-handle resize-bottom-right"></div>
+      <div class="resize-handle resize-bottom"></div>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
